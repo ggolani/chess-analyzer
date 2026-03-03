@@ -18,17 +18,14 @@ graph TD
     ChessCom[Chess.com API]:::external
 
     %% Interactions
-    UI <-->|1. Search Username
-GET /api/recent-games/:username| API
+    UI <-->|1. Search Username: GET /api/recent-games/:username| API
     API <-->|Fetch PGN Archives| ChessCom
     
-    UI <-->|2. Analyze Game
-POST /api/analyze-game (PGN)| API
+    UI <-->|2. Analyze Game: POST /api/analyze-game (PGN)| API
     API -->|3. Sequential FEN Evaluation| SF
     SF -->|Return Evaluation (cp/mate)| API
     
-    API -->|4. Generate Commentary
-Prompt + Evals + Moves| Gemini
+    API -->|4. Generate Commentary: Prompt + Evals + Moves| Gemini
     Gemini -->|Return JSON Annotations| API
     
     API -->|5. Return Merged Analysis| UI
